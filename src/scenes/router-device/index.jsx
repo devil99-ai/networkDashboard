@@ -4,11 +4,8 @@ import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 
 const options = [
-  { label: "Dell Sonic", path: "/deviceBackup/devices/switchDevice/dellSonic/index" },
-  { label: "Dell Switch", path: "/switchDevice/dell/index" },
-  { label: "Cisco IOS", path: "/switchDevice/ciscoIOS/index" },
-  { label: "Cisco Nexus", path: "/switchDevice/Nexus/index" },
-  { label: "Cisco Cumulus", path: "/switchDevice/Cumulus/index" },
+  { label: "Cisco", path: "/routers/cisco/index" },
+
 ];
 
 const OptionCard = styled(Paper)(({ theme }) => ({
@@ -23,7 +20,7 @@ const OptionCard = styled(Paper)(({ theme }) => ({
   },
 }));
 
-const SwitchDevicesBackupPage = () => {
+const RouterDevicesPage = () => {
   const navigate = useNavigate();
 
   return (
@@ -44,4 +41,4 @@ const SwitchDevicesBackupPage = () => {
   );
 };
 
-export default SwitchDevicesBackupPage;
+export default RouterDevicesPage;

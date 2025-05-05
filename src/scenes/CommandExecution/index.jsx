@@ -12,11 +12,11 @@ import DnsIcon from '@mui/icons-material/Dns';
 
 const devices = [
   { label: "Switch", icon: <SwitchIcon fontSize="large" />, path: "/switch-device" },
-  { label: "Router", icon: <RouterIcon fontSize="large" /> },
-  { label: "Firewall", icon: <FirewallIcon fontSize="large" /> },
-  { label: "Load Balancer", icon: <LoadBalancerIcon fontSize="large" /> },
-  { label: "Checkpoint VPN", icon: <VPNIcon fontSize="large" /> },
-  { label: "Servers", icon: <DnsIcon fontSize="large" /> },
+  { label: "Router", icon: <RouterIcon fontSize="large" />, path: "/router-device" },
+  { label: "Firewall", icon: <FirewallIcon fontSize="large" />, path: "/firewall-device" },
+  { label: "Load Balancer", icon: <LoadBalancerIcon fontSize="large" />, path:"/loadBalancer-device" },
+  { label: "Checkpoint VPN", icon: <VPNIcon fontSize="large" />, path:"/checkpointvpn" },
+  { label: "Servers", icon: <DnsIcon fontSize="large" />, path:"/servers" },
 ];
 
 const Item = styled(Paper)(({ theme }) => ({

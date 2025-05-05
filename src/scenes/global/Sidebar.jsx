@@ -111,7 +111,7 @@ const Sidebar = () => {
                         </Box>
                     )}
                     {/* Menu Items */}
-                    <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+                    <Box paddingLeft={isCollapsed ? undefined : "5%"}>
                         <Item 
                             title="Dashboard"
                             to="/"
@@ -125,7 +125,7 @@ const Sidebar = () => {
                                  color={colors.grey[300]}
                                  sx={{ m: "15px 0 5px 20px" }}
                             >
-                                Data
+                                User Data
                             </Typography>
 
                         <Item 
@@ -140,7 +140,7 @@ const Sidebar = () => {
                                  color={colors.grey[300]}
                                  sx={{ m: "15px 0 5px 20px" }}
                             >
-                                Operations
+                            Operation
                             </Typography>
 
                         <Item 
@@ -188,7 +188,7 @@ const Sidebar = () => {
                                  color={colors.grey[300]}
                                  sx={{ m: "15px 0 5px 20px" }}
                             >
-                                Chart
+                                Charts
                             </Typography>                        
 
                         <Item 

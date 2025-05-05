@@ -5,12 +5,17 @@ import {
   Container,
   Paper,
   TextField,
-  Typography
+  Typography,
+  IconButton
 } from "@mui/material";
-function DellSonicBackup() {
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+
+function CheckpointCommandExecution() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [ipaddress, setIpAddress] = useState("");
+  const [command, setCommand] = useState([""]);
   const [downloadUrl, setDownloadUrl] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -23,6 +28,7 @@ function DellSonicBackup() {
       ipaddress,
       username,
       password,
+      command,
     };
 
     try {
@@ -46,12 +52,28 @@ function DellSonicBackup() {
     }
   };
 
+  const addCommandField = () => {
+    setCommand([...command, ""]);
+  };
+
+  const removeCommandField = (index) => {
+    const newCommand = [...command];
+    newCommand.splice(index, 1);
+    setCommand(newCommand);
+  };
+
+  const updateCommand = (index, value) => {
+    const newCommand = [...command];
+    newCommand[index] = value;
+    setCommand(newCommand);
+  };
+
   return (
     
     <Container maxWidth="sm" sx={{ mt: 6 }}>
       <Paper elevation={3} sx={{ p: 4 }}>
         <Typography variant="h5" gutterBottom align="center">
-          Device BackUp
+          Remote Command Execution
         </Typography>
         <Box component="form" onSubmit={handleSubmit}>
           <TextField
@@ -83,6 +105,42 @@ function DellSonicBackup() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
+          <Typography variant="subtitle1" sx={{ mt: 2 }}>
+            Command(s):
+          </Typography>
+          {command.map((cmd, index) => (
+            <Box
+              key={index}
+              display="flex"
+              alignItems="center"
+              gap={1}
+              mt={1}
+            >
+              <TextField
+                label={`Command ${index + 1}`}
+                variant="outlined"
+                fullWidth
+                required
+                value={cmd}
+                onChange={(e) => updateCommand(index, e.target.value)}
+              />
+              {command.length > 1 && (
+                <IconButton onClick={() => removeCommandField(index)} color="error">
+                  <RemoveIcon />
+                </IconButton>
+              )}
+            </Box>
+          ))}
+          <Box mt={2} display="flex" justifyContent="flex-start">
+            <Button
+              variant="outlined"
+              startIcon={<AddIcon />}
+              onClick={addCommandField}
+            >
+              Add Command
+            </Button>
+          </Box>
+
           <Box mt={4} display="flex" justifyContent="center">
             <Button
               type="submit"
@@ -112,4 +170,4 @@ function DellSonicBackup() {
   );
 }
 
-export default DellSonicBackup;
+export default CheckpointCommandExecution;

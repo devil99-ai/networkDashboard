@@ -18,7 +18,19 @@ import CumulusCommandExecution from './scenes/switches/Cumulus';
 import SwitchDevicesPage from './scenes/switch-device';
 import DeviceBackup from './scenes/deviceBackup';
 import SwitchDevicesBackupPage from './scenes/deviceBackup/devices';
-
+import RouterDevicesPage from './scenes/router-device';
+import CiscoRouterCommandExecution from './scenes/routers/cisco';
+import FirewallDevicesPage from './scenes/firewall-device';
+import CiscoFMCCommandExecution from './scenes/firewall/ciscoFMC';
+import LbDevicesPage from './scenes/loadBalancer-device';
+import LbCommandExecution from './scenes/LB/F5';
+import ServersPage from './scenes/servers';
+import LinuxCommandExecution from './scenes/server/linux';
+import UbuntuCommandExecution from './scenes/server/ubuntu';
+import WindowsCommandExecution from './scenes/server/windows';
+import CheckpointCommandExecution from './scenes/firewall/checkpoint';
+import CheckpointVpnCommandExecution from './scenes/checkpointVpn';
+import DellSonicBackup from './scenes/deviceBackup/devices/switchDevice/dellSonic';
 // import FAQ from './scenes/faq';
 // import Line from './scenes/line';
 // import Pie from './scenes/pie';
@@ -49,9 +61,30 @@ function App() {
               <Route path="/switches/ciscoIOS/index" element={<CiscoCommandExecution />} />
               <Route path="/switches/Nexus/index" element={<NexusCommandExecution />} />
               <Route path="/switches/Cumulus/index" element={<CumulusCommandExecution />} />
+              {/* {router devices} */}
+              <Route path="/router-device" element={<RouterDevicesPage/>} />
+              <Route path="/routers/cisco/index" element={<CiscoRouterCommandExecution />} />
+              {/* {firewall devices} */}
+              <Route path="/firewall-device" element={<FirewallDevicesPage/>}/>
+              <Route path="/firewall/ciscoFMC/index" element={<CiscoFMCCommandExecution/>}/>
+              <Route path="/firewall/checkpoint/index" element={<CheckpointCommandExecution/>}/>
+              {/* {load balancers} */}
+              <Route path="/loadBalancer-device" element={<LbDevicesPage/>}/>
+              <Route path="/LB/F5/index" element={<LbCommandExecution />} />
+              {/* {check point vpn} */}
+              <Route path="/checkpointVpn" element={<CheckpointVpnCommandExecution/>}/>
+
+
+
+              {/* {servers} */}
+              <Route path="/servers" element={<ServersPage/>}/>
+              <Route path="/server/linux/index" element={<LinuxCommandExecution/>}/>
+              <Route path="/server/ubuntu/index" element={<UbuntuCommandExecution/>}/>
+              <Route path="/server/windows/index" element={<WindowsCommandExecution/>}/>
 {/* {------------------------------------------Device backup elements route--------------------------------------------} */}              
               <Route path="/deviceBackup" element={<DeviceBackup />} />
               <Route path="/deviceBackup/devices/switchDevice" element={<SwitchDevicesBackupPage/>}/>
+              <Route path="/deviceBackup/devices/switchDevice/dellSonic/index" element={<DellSonicBackup/>}/>
  {/* {------------------------------------------Device IOS Upgrade elements route--------------------------------------------} */}              
               <Route path="/IOSUpgrade" element={<DeviceIosUpgrade/>} />           
               {/* <Route path="/bar" element={<Bar />} /> */}

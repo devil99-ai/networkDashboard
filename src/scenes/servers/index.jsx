@@ -4,11 +4,10 @@ import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 
 const options = [
-  { label: "Dell Sonic", path: "/deviceBackup/devices/switchDevice/dellSonic/index" },
-  { label: "Dell Switch", path: "/switchDevice/dell/index" },
-  { label: "Cisco IOS", path: "/switchDevice/ciscoIOS/index" },
-  { label: "Cisco Nexus", path: "/switchDevice/Nexus/index" },
-  { label: "Cisco Cumulus", path: "/switchDevice/Cumulus/index" },
+  { label: "Linux Red Hat(RHEL)", path: "/server/linux/index" },
+  { label: "Ubuntu", path: "/server/ubuntu/index" },
+  { label: "Windows", path: "/server/windows/index" },
+
 ];
 
 const OptionCard = styled(Paper)(({ theme }) => ({
@@ -23,13 +22,13 @@ const OptionCard = styled(Paper)(({ theme }) => ({
   },
 }));
 
-const SwitchDevicesBackupPage = () => {
+const ServersPage = () => {
   const navigate = useNavigate();
 
   return (
     <Box p={4}>
       <Typography variant="h4" gutterBottom>
-        Switch Device Options
+        Servers Options
       </Typography>
       <Grid container spacing={3}>
         {options.map((item, index) => (
@@ -44,4 +43,4 @@ const SwitchDevicesBackupPage = () => {
   );
 };
 
-export default SwitchDevicesBackupPage;
+export default ServersPage;
