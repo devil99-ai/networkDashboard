@@ -5,9 +5,12 @@ import {
   Container,
   Paper,
   TextField,
-  Typography
+  Typography,
+  
 } from "@mui/material";
-function DellSonicBackup() {
+
+
+function LbBackup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [ipaddress, setIpAddress] = useState("");
@@ -46,12 +49,13 @@ function DellSonicBackup() {
     }
   };
 
+  
   return (
     
     <Container maxWidth="sm" sx={{ mt: 6 }}>
       <Paper elevation={3} sx={{ p: 4 }}>
         <Typography variant="h5" gutterBottom align="center">
-          Device BackUp
+          Device Backup
         </Typography>
         <Box component="form" onSubmit={handleSubmit}>
           <TextField
@@ -83,6 +87,8 @@ function DellSonicBackup() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
+          
+
           <Box mt={4} display="flex" justifyContent="center">
             <Button
               type="submit"
@@ -90,7 +96,7 @@ function DellSonicBackup() {
               color="primary"
               disabled={loading}
             >
-              {loading ? "Executing..." : "Execute & Download"}
+              {loading ? "Taking Backup..." : "Backup & Download"}
             </Button>
           </Box>
 
@@ -101,7 +107,7 @@ function DellSonicBackup() {
                 href={downloadUrl}
                 download="ssh_output.txt"
               >
-                Download Output File
+                Download Backup File
               </Button>
             </Box>
           )}
@@ -112,4 +118,4 @@ function DellSonicBackup() {
   );
 }
 
-export default DellSonicBackup;
+export default LbBackup;
