@@ -6,7 +6,7 @@ import Topbar from './scenes/global/Topbar';
 import Dashboard from './scenes/dashboard';
 import Sidebar from './scenes/global/Sidebar';
 import Team from './scenes/team';
-import SonicCommandExecution from './scenes/switches/dellSonic';
+import SonicNormalModeCommandExecution from './scenes/CommandExecution/dellSonicMode';
 import DeviceIosUpgrade from './scenes/IOSUpgrade';
 // import Bar from './scenes/bar';
 import Form from './scenes/form';
@@ -14,20 +14,24 @@ import CommandExecution from './scenes/CommandExecution';
 import DellCommandExecution from './scenes/switches/dell';
 import CiscoCommandExecution from './scenes/switches/ciscoIOS';
 import NexusCommandExecution from './scenes/switches/Nexus';
-import CumulusCommandExecution from './scenes/switches/Cumulus';
+import CumulusCommandExecution from './scenes/CommandExecution/CumulusMode';
+import CumulusSudoCommandExecution from './scenes/CommandExecution/CumulusMode/SudoIndex';
 import SwitchDevicesPage from './scenes/switch-device';
 import DeviceBackup from './scenes/deviceBackup';
 import RouterDevicesPage from './scenes/router-device';
 import CiscoRouterCommandExecution from './scenes/routers/cisco';
 import FirewallDevicesPage from './scenes/firewall-device';
-import CiscoFMCCommandExecution from './scenes/firewall/ciscoFMC';
+import CiscoFMCCommandExecution from './scenes/CommandExecution/FMCFirewallMode/index';
+import CiscoFMCClishCommandExecution from './scenes/CommandExecution/FMCFirewallMode/ClishIndex';
+import CiscoFMCSudoCommandExecution from './scenes/CommandExecution/FMCFirewallMode/SudoIndex';
 import LbDevicesPage from './scenes/loadBalancer-device';
-import LbCommandExecution from './scenes/LB/F5';
+import LbCommandExecution from './scenes/CommandExecution/F5Mode';
+import LbTmshCommandExecution from './scenes/CommandExecution/F5Mode/TmshIndex';
 import ServersPage from './scenes/servers';
 import LinuxCommandExecution from './scenes/server/linux';
 import UbuntuCommandExecution from './scenes/server/ubuntu';
 import WindowsCommandExecution from './scenes/server/windows';
-import CheckpointCommandExecution from './scenes/firewall/checkpoint';
+import CheckpointCommandExecution from './scenes/CommandExecution/CheckpointFirewallMode';
 import CheckpointVpnCommandExecution from './scenes/checkpointVpn';
 import SwitchDevicesBackupPage from './scenes/switch-device/backupIndex';
 import SonicBackup from './scenes/switches/dellSonic/BackupIndex';
@@ -47,6 +51,13 @@ import ServersBackupPage from './scenes/servers/BackupIndex';
 import LinuxBackup from './scenes/server/linux/BackupIndex';
 import UbuntuBackup from './scenes/server/ubuntu/BackupIndex';
 import WindowsBackup from './scenes/server/windows/BackupIndex';
+import SonicSwitchModeDevicesPage from './scenes/switches/dellSonic';
+import SonicCommandExecution from './scenes/CommandExecution/dellSonicMode/SonicIndex';
+import CumulusSwitchModeDevicesPage from './scenes/switches/Cumulus';
+import CheckpointFirewallModeDevicesPage from './scenes/firewall/checkpoint';
+import CheckpointClishModeCommandExecution from './scenes/CommandExecution/CheckpointFirewallMode/ClishIndex';
+import CiscoFMCFirewallModeDevicesPage from './scenes/firewall/ciscoFMC';
+import F5ModeDevicesPage from './scenes/LB/F5';
 // import FAQ from './scenes/faq';
 // import Line from './scenes/line';
 // import Pie from './scenes/pie';
@@ -72,21 +83,38 @@ function App() {
               <Route path="/form" element={<Form />} />
               {/* {for all switch command execution} */}
               <Route path="/switch-device" element={<SwitchDevicesPage />} />
-              <Route path="/switches/dellSonic/index" element={<SonicCommandExecution />} />
+              <Route path="/switches/dellSonic/index" element={<SonicSwitchModeDevicesPage />} />
+              {/* {dell sonic modes} */}
+              <Route path="/CommandExecution/dellSonicMode/index" element={<SonicNormalModeCommandExecution />} />
+              <Route path="/CommandExecution/dellSonicMode/SonicIndex" element={<SonicCommandExecution/>}/>
+
               <Route path="/switches/dell/index" element={<DellCommandExecution />} />
               <Route path="/switches/ciscoIOS/index" element={<CiscoCommandExecution />} />
               <Route path="/switches/Nexus/index" element={<NexusCommandExecution />} />
-              <Route path="/switches/Cumulus/index" element={<CumulusCommandExecution />} />
+              <Route path="/switches/Cumulus/index" element={<CumulusSwitchModeDevicesPage/>}/>
+              {/* {cumulus mode} */}
+              <Route path="/CommandExecution/CumulusMode/index" element={<CumulusCommandExecution />} />
+              <Route path="/CommandExecution/CumulusMode/SudoIndex" element={<CumulusSudoCommandExecution/>}/>
               {/* {router devices} */}
               <Route path="/router-device" element={<RouterDevicesPage/>} />
               <Route path="/routers/cisco/index" element={<CiscoRouterCommandExecution />} />
               {/* {firewall devices} */}
               <Route path="/firewall-device" element={<FirewallDevicesPage/>}/>
-              <Route path="/firewall/ciscoFMC/index" element={<CiscoFMCCommandExecution/>}/>
-              <Route path="/firewall/checkpoint/index" element={<CheckpointCommandExecution/>}/>
+              {/* {FMC Mode} */}
+              <Route path="/firewall/ciscoFMC/index" element={<CiscoFMCFirewallModeDevicesPage/>}/>
+              <Route path="/CommandExecution/FMCFirewallMode/index" element={<CiscoFMCCommandExecution/>}/>
+              <Route path="/CommandExecution/FMCFirewallMode/ClishIndex" element={<CiscoFMCClishCommandExecution/>}/>
+              <Route path="/CommandExecution/FMCFirewallMode/SudoIndex" element={<CiscoFMCSudoCommandExecution/>}/>
+              {/* {checkpoint mode} */}
+              <Route path="/firewall/checkpoint/index" element={<CheckpointFirewallModeDevicesPage/>}/>
+              <Route path="/CommandExecution/CheckpointFirewallMode/index" element={<CheckpointCommandExecution/>}/>
+              <Route path="/CommandExecution/CheckpointFirewallMode/ClishIndex" element={<CheckpointClishModeCommandExecution/>}/>
               {/* {load balancers} */}
               <Route path="/loadBalancer-device" element={<LbDevicesPage/>}/>
-              <Route path="/LB/F5/index" element={<LbCommandExecution />} />
+              <Route path="/LB/F5/index" element={<F5ModeDevicesPage />} />
+              {/* {Lb Mode} */}
+              <Route path="/CommandExecution/F5Mode/index" element={<LbCommandExecution/>}/>
+              <Route path="/CommandExecution/F5Mode/TmshIndex" element={<LbTmshCommandExecution/>}/>
               {/* {check point vpn} */}
               <Route path="/checkpointVpn" element={<CheckpointVpnCommandExecution/>}/>
 

@@ -1,173 +1,44 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Container,
-  Paper,
-  TextField,
-  Typography,
-  IconButton
-} from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+import React from "react";
+import { Box, Grid, Typography, Paper } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
-function CheckpointCommandExecution() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [ipaddress, setIpAddress] = useState("");
-  const [command, setCommand] = useState([""]);
-  const [downloadUrl, setDownloadUrl] = useState(null);
-  const [loading, setLoading] = useState(false);
+const options = [
+  { label: "Expert Mode", path: "/CommandExecution/CheckpointFirewallMode/index" },
+  { label: "Clish Mode", path: "/CommandExecution/CheckpointFirewallMode/ClishIndex" },
+];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setDownloadUrl(null);
+const OptionCard = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(4),
+  textAlign: "center",
+  color: theme.palette.text.primary,
+  boxShadow: theme.shadows[3],
+  borderRadius: 12,
+  cursor: "pointer",
+  "&:hover": {
+    backgroundColor: theme.palette.action.hover,
+  },
+}));
 
-    const requestBody = {
-      ipaddress,
-      username,
-      password,
-      command,
-    };
-
-    try {
-      const response = await fetch("http://localhost:8082/execute", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (response.ok) {
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        setDownloadUrl(url);
-      } else {
-        alert("Error executing command");
-      }
-    } catch (error) {
-      alert("Execution error: " + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const addCommandField = () => {
-    setCommand([...command, ""]);
-  };
-
-  const removeCommandField = (index) => {
-    const newCommand = [...command];
-    newCommand.splice(index, 1);
-    setCommand(newCommand);
-  };
-
-  const updateCommand = (index, value) => {
-    const newCommand = [...command];
-    newCommand[index] = value;
-    setCommand(newCommand);
-  };
+const CheckpointFirewallModeDevicesPage = () => {
+  const navigate = useNavigate();
 
   return (
-    
-    <Container maxWidth="sm" sx={{ mt: 6 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
-        <Typography variant="h5" gutterBottom align="center">
-          Remote Command Execution
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit}>
-          <TextField
-            label="IP Address"
-            variant="outlined"
-            fullWidth
-            required
-            margin="normal"
-            value={ipaddress}
-            onChange={(e) => setIpAddress(e.target.value)}
-          />
-          <TextField
-            label="Username"
-            variant="outlined"
-            fullWidth
-            required
-            margin="normal"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <TextField
-            label="Password"
-            variant="outlined"
-            fullWidth
-            required
-            margin="normal"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <Typography variant="subtitle1" sx={{ mt: 2 }}>
-            Command(s):
-          </Typography>
-          {command.map((cmd, index) => (
-            <Box
-              key={index}
-              display="flex"
-              alignItems="center"
-              gap={1}
-              mt={1}
-            >
-              <TextField
-                label={`Command ${index + 1}`}
-                variant="outlined"
-                fullWidth
-                required
-                value={cmd}
-                onChange={(e) => updateCommand(index, e.target.value)}
-              />
-              {command.length > 1 && (
-                <IconButton onClick={() => removeCommandField(index)} color="error">
-                  <RemoveIcon />
-                </IconButton>
-              )}
-            </Box>
-          ))}
-          <Box mt={2} display="flex" justifyContent="flex-start">
-            <Button
-              variant="outlined"
-              startIcon={<AddIcon />}
-              onClick={addCommandField}
-            >
-              Add Command
-            </Button>
-          </Box>
-
-          <Box mt={4} display="flex" justifyContent="center">
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              disabled={loading}
-            >
-              {loading ? "Executing..." : "Execute & Download"}
-            </Button>
-          </Box>
-
-          {downloadUrl && (
-            <Box mt={3} textAlign="center">
-              <Button
-                variant="outlined"
-                href={downloadUrl}
-                download="ssh_output.txt"
-              >
-                Download Output File
-              </Button>
-            </Box>
-          )}
-        </Box>
-    
-      </Paper>
-    </Container>
+    <Box p={4}>
+      <Typography variant="h4" gutterBottom>
+      Checkpoint Firewall Mode
+      </Typography>
+      <Grid container spacing={3}>
+        {options.map((item, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <OptionCard onClick={() => navigate(item.path)}>
+              <Typography variant="h6">{item.label}</Typography>
+            </OptionCard>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
-}
+};
 
-export default CheckpointCommandExecution;
+export default CheckpointFirewallModeDevicesPage ;
