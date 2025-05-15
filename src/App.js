@@ -58,6 +58,10 @@ import CheckpointFirewallModeDevicesPage from './scenes/firewall/checkpoint';
 import CheckpointClishModeCommandExecution from './scenes/CommandExecution/CheckpointFirewallMode/ClishIndex';
 import CiscoFMCFirewallModeDevicesPage from './scenes/firewall/ciscoFMC';
 import F5ModeDevicesPage from './scenes/LB/F5';
+import SSLRenewal from './scenes/ssl';
+import SwitchDevicesSSLPage from './scenes/switch-device/SSLindex';
+import LbDevicesSSLPage from './scenes/loadBalancer-device/SSLindex';
+import F5SSLRenewal from './scenes/LB/F5/sslindex';
 // import FAQ from './scenes/faq';
 // import Line from './scenes/line';
 // import Pie from './scenes/pie';
@@ -160,7 +164,11 @@ function App() {
               {/* <Route path="/pie" element={<Pie />} /> */}
               {/* <Route path="/line" element={<Line />} /> */}
               {/* <Route path="/faq" element={<FAQ />} /> */}
-              {/* <Route path="/calendar" element={<Calendar />} /> */}
+{/* {/*---------------------------------------------SSL Renewal---------------------------------------------------------------- */}
+              <Route path="/ssl" element={<SSLRenewal />} />
+              <Route path="/switch-device/SSLindex" element={<SwitchDevicesSSLPage/>}/>
+              <Route path="/loadBalancer-device/SSLindex" element={<LbDevicesSSLPage/>}/>
+              <Route path="/LB/F5/sslindex" element={<F5SSLRenewal/>}/>
               {/* <Route path="/geography" element={<Geography />} /> */}
             </Routes>
           </main>

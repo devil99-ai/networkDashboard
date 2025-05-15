@@ -169,7 +169,7 @@ const Sidebar = () => {
 
                         <Item 
                             title="SSL Renewal"
-                            to="/calendar"
+                            to="/ssl"
                             icon={<GppGoodIcon />}
                             selected={selected}
                             setSelected={setSelected}
