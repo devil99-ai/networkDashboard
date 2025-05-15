@@ -6,7 +6,8 @@ import {
   Paper,
   TextField,
   Typography,
-  IconButton
+  IconButton,
+  colors
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -136,6 +137,7 @@ function CheckpointCommandExecution() {
               variant="outlined"
               startIcon={<AddIcon />}
               onClick={addCommandField}
+              color={colors.grey[100]}
             >
               Add Command
             </Button>
@@ -158,6 +160,7 @@ function CheckpointCommandExecution() {
                 variant="outlined"
                 href={downloadUrl}
                 download="ssh_output.txt"
+                color={colors.grey[100]}
               >
                 Download Output File
               </Button>
